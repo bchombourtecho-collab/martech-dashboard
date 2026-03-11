@@ -27,10 +27,9 @@ st.markdown("""
 # ── Load & clean data ──────────────────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    df = pd.read_csv(
-        r'C:\Users\Usuario\martech-dashboard\data_campañas.csv',
-        encoding='utf-8-sig'
-    )
+    import os
+    base = os.path.dirname(os.path.abspath(__file__))
+    df = pd.read_csv(os.path.join(base, 'data_campañas.csv'), encoding='utf-8-sig')
 
     # Parse dates
     df['date'] = pd.to_datetime(df['Start Date (in UTC)'], format='%m/%d/%Y')
